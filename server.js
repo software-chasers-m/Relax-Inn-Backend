@@ -19,6 +19,6 @@ app.get('/', (req, res) => {
 
 app.get('/hotelName', HotelController);
 
-app.get('/rooms', RoomController)
+app.get('/rooms', RoomController);
 
 app.listen(PORT, () => console.log(`listening on ${PORT}`));

@@ -1,10 +1,9 @@
 class RoomModel {
 
   constructor(elements) {
-    this.id = elements.id;
-    this.overview = elements.overviewSections;
-    this.roomTypeNames = elements.roomTypes;
-    // this.img = elements.optimizedThumbUrls.srpDesktop;
+    this.roomName = elements.name;
+    this.images = elements.images;
+    this.maxOccupancy = elements.maxOccupancy;
   }
 }
 

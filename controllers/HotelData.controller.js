@@ -2,6 +2,7 @@ const HotelModel = require('../models/Hotel.model');
 const RoomModel = require('../models/Room.model');
 const rapidToken = process.env.RAPIDAPI_KEY;
 const rapidHost = process.env.RAPIDAPI_HOST;
+const rapidHost2 = process.env.RAPIDAPI_HOST2;
 const axios = require('axios');
 const { jwt, getKey } = require('./Auth0.controller');
 
@@ -34,41 +35,28 @@ const HotelController = (req, res) => {
 }
 
 const RoomController = (req, res) => {
-  let locationId = req.query.id;
   let options = {
     method: 'GET',
-    url: `https://hotels-com-free.p.rapidapi.com/pde/property-details/v1/hotels.com/${locationId}`,
+    url: 'https://hotels-com-provider.p.rapidapi.com/v1/hotels/booking-details',
     params: {
-      rooms: '1',
-      checkIn: '2021-01-27',
-      checkOut: '2021-01-28',
-      locale: 'en_US',
+      checkout_date: '2022-03-27',
+      hotel_id: '179663',
       currency: 'USD',
-      include: 'neighborhood'
+      locale: 'en_US',
+      checkin_date: '2022-03-26',
+      adults_number: '1',
+      children_ages: '4,0'
     },
     headers: {
-      'x-rapidapi-host': rapidHost,
+      'x-rapidapi-host': rapidHost2,
       'x-rapidapi-key': rapidToken
     }
   };
-  axios.request(options).then(response => {
-    let newArray = [];
-    newArray.push(response.data.data.body.overview);
-    newArray.push({ roomTypes: response.data.data.body.propertyDescription.roomTypeNames });
 
-    let options2 = {
-      method: 'GET',
-      url: `https://hotels-com-free.p.rapidapi.com/nice/image-catalog/v2/hotels/${locationId}`,
-      headers: {
-        'x-rapidapi-host': rapidHost,
-        'x-rapidapi-key': rapidToken
-      }
-    };
-    axios.request(options2).then(response => {
-      newArray.push({ roomsImages: response.data.roomImages.map(element => element.images.map(el => el.baseUrl)) });
-      res.send(newArray);
-    });
-  }).catch(error => {
+  axios.request(options).then(response => {
+    let roomsArray = response.data.roomsAndRates.rooms.map(element => new RoomModel(element))
+    res.send(roomsArray);
+  }).catch(function (error) {
     console.error(error);
   });
 }
