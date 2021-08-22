@@ -14,15 +14,15 @@ const HotelController = (req, res) => {
     method: 'GET',
     url: 'https://hotels-com-free.p.rapidapi.com/srle/listing/v1/brands/hotels.com',
     params: {
-      lat: 31.9515694,
-      lon: 35.9239625,
-      checkIn: '2021-01-27',
-      checkOut: '2021-01-28',
+      lat: req.query.lat,
+      lon: req.query.lon,
+      checkIn: req.query.checkIn,
+      checkOut: req.query.checkOut,
       rooms: '1',
       locale: 'en_US',
       currency: 'USD',
       pageNumber: '1',
-      sortOrder: 'NO_SORT'
+      sortOrder: req.query.sortOrder
     },
     headers: {
       'x-rapidapi-host': rapidHost,
@@ -42,11 +42,10 @@ const RoomController = (req, res) => {
     method: 'GET',
     url: 'https://hotels-com-provider.p.rapidapi.com/v1/hotels/booking-details',
     params: {
-      checkout_date: '2022-03-27',
-      hotel_id: '179663',
-      currency: 'USD',
+      checkout_date: req.query.checkOut,
+      hotel_id: req.query.id,
       locale: 'en_US',
-      checkin_date: '2022-03-26',
+      checkin_date: req.query.checkIn,
       adults_number: '1',
       children_ages: '4,0'
     },
