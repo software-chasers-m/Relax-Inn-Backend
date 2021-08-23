@@ -10,7 +10,7 @@ const mongoose = require("mongoose");
 app.use(express.json());
 const PORT = process.env.PORT || 8000;
 const { HotelController, RoomController, StoredData } = require('./controllers/HotelData.controller');
-
+const { UserDataController, AddUserData, DeleteUserData } = require('./controllers/UserData.controller');
 app.use(express.json());
 mongoose.connect('mongodb://localhost:27017/hotelData', {
   useNewUrlParser: true,
@@ -25,6 +25,12 @@ app.get('/hotelName', HotelController);
 
 app.get('/rooms', RoomController);
 
-app.get('/storeData', StoredData)
+app.get('/storeData', StoredData);
+
+app.get('/userData', UserDataController);
+
+app.post('/userData', AddUserData);
+
+app.delete('/userData/:id', DeleteUserData);
 
 app.listen(PORT, () => console.log(`listening on ${PORT}`));

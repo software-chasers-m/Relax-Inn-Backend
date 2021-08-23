@@ -44,6 +44,7 @@ const RoomController = (req, res) => {
     params: {
       checkout_date: req.query.checkOut,
       hotel_id: req.query.id,
+      currency: 'USD',
       locale: 'en_US',
       checkin_date: req.query.checkIn,
       adults_number: '1',
@@ -91,11 +92,12 @@ const StoredData = (req, res) => {
   //       img: element.optimizedThumbUrls.srpDesktop,
   //     });
   //     newHotel.save();
-  HotelsData.find({}, (err, hotelsData) => {
-    res.send(hotelsData);
+  HotelsData.find({}, (err, hotels) => {
+    res.send(hotels);
     //   });
     // })
     //   })
   })
 }
+
 module.exports = { HotelController, RoomController, StoredData };
