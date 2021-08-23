@@ -2,16 +2,16 @@ const mongoose = require('mongoose');
 
 const UserDataSchema = new mongoose.Schema({
   hotelName: String,
-  adults: String,
   roomName: String,
-  numberOfRooms: Number,
-  checkInDate: String,
-  checkOutDate: String,
-  totalPrice: Number,
+  checkIn: String,
+  checkOut: String,
+  totalPrice: String,
+  messageChildren: String,
+  messageTotal: String,
   img: String,
   email: String,
 });
 
-const UserData = mongoose.model('Books', UserDataSchema);
+const UserData = mongoose.model('UsersData', UserDataSchema);
 
 module.exports = UserData;
