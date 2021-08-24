@@ -68,8 +68,8 @@ const StoredData = (req, res) => {
   //   method: 'GET',
   //   url: 'https://hotels-com-free.p.rapidapi.com/srle/listing/v1/brands/hotels.com',
   //   params: {
-  //     lat: 29.526702,
-  //     lon: 35.007822,
+  //     lat: 38.9953683,
+  //     lon: 21.9877132,
   //     checkIn: '2021-01-27',
   //     checkOut: '2021-01-28',
   //     rooms: '1',
@@ -94,10 +94,9 @@ const StoredData = (req, res) => {
   //     newHotel.save();
   HotelsData.find({}, (err, hotels) => {
     res.send(hotels);
-    //   });
-    // })
-    //   })
-  })
+  });
+  //   })
+  // })
 }
 
 module.exports = { HotelController, RoomController, StoredData };

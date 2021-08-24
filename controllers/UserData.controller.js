@@ -38,7 +38,7 @@ const AddUserData = (req, res) => {
     email: req.body.email
   });
   newData.save();
-  res.send(newData);
+  // res.send(newData);
   // })
 }
 
