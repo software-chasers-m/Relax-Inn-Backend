@@ -15,7 +15,7 @@ const { UserDataController,
   DeleteUserData,
   UpdateUserData } = require('./controllers/UserData.controller');
 app.use(express.json());
-mongoose.connect('mongodb://moayadalhaj:13579@cluster0-shard-00-00.s1tmf.mongodb.net:27017,cluster0-shard-00-01.s1tmf.mongodb.net:27017,cluster0-shard-00-02.s1tmf.mongodb.net:27017/myFirstDatabase?ssl=true&replicaSet=atlas-vm5n6a-shard-0&authSource=admin&retryWrites=true&w=majority', {
+mongoose.connect('mongodb+srv://moayadalhaj:13579@cluster0.s1tmf.mongodb.net/myFirstDatabase?retryWrites=true&w=majority/hotelData', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
