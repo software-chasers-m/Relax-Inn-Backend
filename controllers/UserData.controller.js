@@ -4,12 +4,28 @@ const { jwt, getKey } = require('./Auth0.controller');
 const UserData = require('../models/UserData.model');
 
 const UserDataController = (req, res) => {
-  UserData.find({}, (error, data) => {
+  // let email = req.query.email;
+  // console.log(email);
+  // UserData.find({ email: email }, (error, data) => {
+  //   if (error) {
+  //     res.send(error.message);
+  //   } else if (data === undefined) {
+  //     res.send('Data is not found');
+  //   } else {
+  //     res.send(data);
+  //   }
+  // });
+  UserData.find({}, (err, data) => {
     res.send(data);
   })
 }
 
 const AddUserData = (req, res) => {
+  // const token = req.headers.authorization.split(' ')[1];
+  // jwt.verify(token, getKey, {}, (err, user) => {
+  //   if (err) {
+  //     res.send('invalid token');
+  //   }
   const newData = new UserData({
     hotelName: req.body.hotelName,
     roomName: req.body.roomName,
@@ -23,6 +39,7 @@ const AddUserData = (req, res) => {
   });
   newData.save();
   res.send(newData);
+  // })
 }
 
 const DeleteUserData = (req, res) => {
@@ -37,5 +54,18 @@ const DeleteUserData = (req, res) => {
   })
 }
 
+const UpdateUserData = (req, res) => {
+  let roomId = req.params.id;
+  UserData.findOne({ _id: roomId }, (err, data) => {
+    if (err) {
+      res.send("Update faild")
+    }
+    data.checkIn = req.body.checkIn;
+    data.checkOut = req.body.checkOut;
+    data.totalPrice = req.body.totalPrice;
+    data.save();
+    res.send(data);
+  })
+}
 
-module.exports = { UserDataController, AddUserData, DeleteUserData };
+module.exports = { UserDataController, AddUserData, DeleteUserData, UpdateUserData };
