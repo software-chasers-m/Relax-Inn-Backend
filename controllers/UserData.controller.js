@@ -38,8 +38,6 @@ const AddUserData = (req, res) => {
     email: req.body.email
   });
   newData.save();
-  // res.send(newData);
-  // })
 }
 
 const DeleteUserData = (req, res) => {

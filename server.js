@@ -15,7 +15,7 @@ const { UserDataController,
   DeleteUserData,
   UpdateUserData } = require('./controllers/UserData.controller');
 app.use(express.json());
-mongoose.connect('mongodb+srv://moayadalhaj:13579@cluster0.s1tmf.mongodb.net/myFirstDatabase?retryWrites=true&w=majority/usersdatas', {
+mongoose.connect('mongodb+srv://moayadalhaj:13579@cluster0.s1tmf.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
