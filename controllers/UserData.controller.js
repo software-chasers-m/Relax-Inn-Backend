@@ -38,9 +38,8 @@ const AddUserData = (req, res) => {
     email: req.body.email
   });
   newData.save();
-  UserData.find({}, (err, data) => {
-    res.send(data);
-  })
+  res.send(newData);
+})
 }
 
 const DeleteUserData = (req, res) => {
