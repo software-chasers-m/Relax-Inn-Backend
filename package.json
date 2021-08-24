@@ -26,6 +26,7 @@
     "jsonwebtoken": "^8.5.1",
     "jwks-rsa": "^2.0.4",
     "mongoose": "^5.13.7",
+    "node": "^14.17.3",
     "react-router-dom": "^5.2.0"
   }
 }
