@@ -39,7 +39,6 @@ const AddUserData = (req, res) => {
   });
   newData.save();
   res.send(newData);
-})
 }
 
 const DeleteUserData = (req, res) => {
